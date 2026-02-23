@@ -1,0 +1,12 @@
+{
+  "name": "TimeSense",
+  "short_name": "TimeSense",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "description": "Low-friction time logging + focus prompts",
+  "icons": []
+}
+
+

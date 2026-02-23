@@ -1,0 +1,10 @@
+.env
+*.db
+__pycache__
+.venv
+venv
+*.pyc
+.DS_Store
+.cursor
+_backup_*/
+DEBUG_*.json

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="manifest" href="/manifest.webmanifest?v=20260209_5" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>TimeSense</title>
+  <link rel="stylesheet" href="/static/style.css?v=20260209_5" />
+  <script>window.__TIMESENSE_BUILD__ = "__CACHE_BUST__";</script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">⏱ TimeSense</div>
+    </div>
+    <div class="header-center">
+      <button class="nav-btn" id="btn-prev-week" type="button">←</button>
+      <span class="week-label" id="week-label">This Week</span>
+      <button class="nav-btn" id="btn-next-week" type="button">→</button>
+      <button class="nav-btn" id="btn-this-week" type="button">Today</button>
+    </div>
+    <div class="header-right">
+      <label class="toggle-label" title="Include Google Calendar. Connect Google first in Settings → then turn this on. Turn off if Apple already syncs Google.">
+        <input type="checkbox" id="toggle-include-google" />
+        <span>Google Cal</span>
+      </label>
+      <label class="toggle-label" title="Include Outlook calendar (turn off if Apple already syncs Outlook to avoid duplicates)">
+        <input type="checkbox" id="toggle-include-outlook" />
+        <span>Outlook</span>
+      </label>
+      <label class="toggle-label">
+        <input type="checkbox" id="toggle-show-night" />
+        <span>Show 12–6AM</span>
+      </label>
+      <label class="toggle-label" title="Zoom calendar (more pixels per hour)">
+        <span>Zoom</span>
+        <input type="range" id="calendar-zoom" min="45" max="120" value="90" step="15" style="width:60px" />
+      </label>
+      <button class="btn-icon" id="btn-refresh" type="button" title="Refresh calendar and events (e.g. after adding on Apple Cal)">↻</button>
+      <button class="btn-icon" id="btn-settings" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <main class="main-grid">
+    <!-- Week Calendar -->
+    <section class="calendar-section">
+      <div id="week-allday-bar" class="week-allday-bar" style="display:none;"></div>
+      <div class="calendar-grid" id="week-grid">
+        <div class="calendar-hours" id="week-hours"></div>
+        <div class="week-canvas" id="week-canvas"></div>
+        <div id="week-canvas-spacer" class="week-canvas-spacer" aria-hidden="true"></div>
+        <div id="week-summary-row" class="week-summary-row" aria-label="Day summaries"></div>
+        <div id="week-loading" class="week-loading" style="display:none;" aria-live="polite">Loading week…</div>
+      </div>
+    </section>
+
+    <!-- Right Sidebar (Quick Log panel removed; drag-to-add still uses modal) -->
+    <aside class="sidebar">
+      <div class="status-line" id="status" style="margin-bottom:8px;min-height:1.2em;"></div>
+
+      <!-- Weekly Targets Progress -->
+      <div class="panel targets-panel">
+        <div class="panel-header" id="targets-header">
+          <span class="panel-title">🎯 Weekly Targets</span>
+          <button class="btn-icon-sm" id="btn-manage-targets" title="Manage Targets">⚙</button>
+        </div>
+        <div class="targets-progress" id="targets-progress"></div>
+      </div>
+
+      <!-- Analytics Dashboard -->
+      <div class="panel analytics-panel">
+        <div class="panel-header" id="analytics-header">
+          <span class="panel-title">📊 This Week</span>
+          <span class="btn-icon-sm">→</span>
+        </div>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-logged">--</div>
+            <div class="stat-label">Hours Logged</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-coverage">--</div>
+            <div class="stat-label">Coverage</div>
+          </div>
+        </div>
+        <div class="breakdown-chart" id="breakdown-chart"></div>
+        <div class="breakdown-legend" id="breakdown-legend"></div>
+        <button class="view-insights-btn" id="btn-view-insights">View Detailed Insights →</button>
+      </div>
+
+      <!-- Past N days summary: interactive chart by category -->
+      <div class="panel trends-panel">
+        <div class="panel-header">
+          <span class="panel-title">📈 Trends</span>
+        </div>
+        <div class="trends-controls">
+          <label class="trends-label">Period</label>
+          <select id="trends-period" class="input-sm">
+            <option value="7">Past 7 days</option>
+            <option value="14">Past 14 days</option>
+            <option value="30">Past 30 days</option>
+            <option value="custom">Custom range</option>
+          </select>
+          <div id="trends-custom-range" class="trends-custom-range" style="display:none;">
+            <input type="date" id="trends-start" class="input-sm" />
+            <span>→</span>
+            <input type="date" id="trends-end" class="input-sm" />
+          </div>
+          <label class="trends-label">Categories</label>
+          <div id="trends-categories" class="trends-categories"></div>
+        </div>
+        <div id="trends-chart" class="trends-chart"></div>
+        <div id="trends-legend" class="trends-legend"></div>
+      </div>
+
+      <!-- Day note (diary) for selected day -->
+      <div class="panel day-note-panel">
+        <div class="panel-header">
+          <span class="panel-title">📝 Day note</span>
+          <input type="date" id="day-note-input" class="input-sm" style="width:130px" title="Pick day for note" />
+        </div>
+        <textarea id="day-note-text" class="input" rows="3" placeholder="Add a note or diary for this day (saved with your activity for later analysis)"></textarea>
+        <div class="day-note-actions">
+          <label class="toggle-label" title="AI response language for reflection and insights">
+            <span>AI:</span>
+            <select id="ai-lang" class="input-sm" style="width:auto;padding:2px 6px;">
+              <option value="en">English</option>
+              <option value="zh">简体中文</option>
+            </select>
+          </label>
+          <label class="toggle-label" title="Model for day reflection (AI Builders)">
+            <span>Model:</span>
+            <select id="day-reflection-model" class="input-sm" style="width:auto;max-width:160px;padding:2px 6px;">
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview (fast)</option>
+              <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+              <option value="gpt-5">gpt-5</option>
+              <option value="supermind-agent-v1">supermind-agent-v1</option>
+            </select>
+          </label>
+          <button class="btn-sm" id="day-note-save">Save note</button>
+          <button class="btn-sm secondary" id="day-note-analyze" title="Analyze this day with AI (note + activity)">🤖 Analyze day</button>
+        </div>
+        <div id="day-analysis-result" class="day-analysis-result" style="display:none;">
+          <div class="day-analysis-label">AI reflection</div>
+          <div id="day-analysis-text" class="day-analysis-text"></div>
+        </div>
+      </div>
+
+      <!-- Goals & Deadlines -->
+      <div class="panel goals-panel">
+        <div class="panel-header">
+          <span class="panel-title">🏆 Goals</span>
+          <button class="btn-icon-sm" id="btn-add-goal" title="Add Goal">+</button>
+        </div>
+        <div class="goals-list" id="goals-list"></div>
+      </div>
+
+      <!-- Uncategorized Events -->
+      <details class="panel collapsible" id="review-panel">
+        <summary class="panel-header clickable">
+          <span class="panel-title">📋 Review Events</span>
+          <span class="badge" id="uncategorized-count">0</span>
+        </summary>
+        <div class="review-content">
+          <div class="review-actions">
+            <button class="btn-xs" id="btn-auto-categorize">🤖 Auto-categorize All</button>
+          </div>
+          <div class="review-list" id="review-list"></div>
+        </div>
+      </details>
+
+      <!-- Connections (collapsed) -->
+      <details class="panel collapsible">
+        <summary class="panel-header clickable">
+          <span class="panel-title">🔗 Connections</span>
+        </summary>
+        <div class="connections-grid">
+          <div class="conn-item">
+            <span>Google</span>
+            <span class="conn-status" id="google-conn-status">—</span>
+            <button class="btn-xs" id="btn-google">Connect</button>
+          </div>
+          <div class="conn-item conn-item-apple">
+            <div class="conn-apple-row">
+              <span>Apple Calendar</span>
+              <span class="conn-status" id="apple-conn-status">—</span>
+            </div>
+            <p class="conn-apple-hint">Sync: <strong>Mac menu bar app</strong> → Sync now, then <strong>↻</strong> above or <kbd>⌘⌥R</kbd>. Or import once:</p>
+            <input type="file" id="apple-ics-input" accept=".ics" style="display:none" />
+            <button type="button" class="btn-xs" id="btn-apple-ics-import">Import .ics file</button>
+          </div>
+        </div>
+      </details>
+    </aside>
+  </main>
+
+  <!-- Context Menu -->
+  <div class="context-menu" id="context-menu" style="display:none;">
+    <button class="ctx-item" id="ctx-edit">✏️ Edit</button>
+    <button class="ctx-item" id="ctx-delete">🗑️ Delete</button>
+    <button class="ctx-item" id="ctx-convert">📥 Log This Event</button>
+  </div>
+
+  <!-- Drag-to-add: quick log with title + category -->
+  <div class="modal-overlay" id="drag-add-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Log time</span>
+        <button type="button" class="btn-icon-sm" id="drag-add-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field-label">What did you do? (optional)</label>
+        <input id="drag-add-title" class="input" placeholder="e.g. Meeting, Break" />
+        <label class="field-label">Category</label>
+        <select id="drag-add-category" class="input">
+          <option value="">Auto from title</option>
+          <!-- options filled from allCategories -->
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn secondary" id="drag-add-cancel">Cancel</button>
+        <button type="button" class="btn" id="drag-add-ok">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="edit-modal" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modal-title">Edit Entry</span>
+        <button class="btn-icon-sm" id="modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field-label">Title</label>
+        <input id="edit-title" class="input" placeholder="What did you do?" />
+        <label class="field-label">Category</label>
+        <select id="edit-category" class="input"></select>
+        <div class="time-row">
+          <div>
+            <label class="field-label">Start</label>
+            <input id="edit-start" class="input" type="datetime-local" />
+          </div>
+          <div>
+            <label class="field-label">End</label>
+            <input id="edit-end" class="input" type="datetime-local" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn secondary" id="edit-cancel">Cancel</button>
+        <button class="btn" id="edit-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Goal Modal -->
+  <div class="modal-overlay" id="goal-modal" style="display:none;">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <span class="modal-title">Add Goal</span>
+        <button class="btn-icon-sm" id="goal-modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field-label">What's your goal?</label>
+        <input id="goal-title" class="input" placeholder="e.g., Find a new job" />
+        <label class="field-label">Deadline</label>
+        <input id="goal-deadline" class="input" type="date" />
+      </div>
+      <div class="modal-footer">
+        <button class="btn secondary" id="goal-cancel">Cancel</button>
+        <button class="btn" id="goal-save">Add Goal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings/Targets Modal -->
+  <div class="modal-overlay" id="settings-modal" style="display:none;">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <span class="modal-title">⚙️ Settings & Targets</span>
+        <button class="btn-icon-sm" id="settings-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-tabs">
+          <button class="tab-btn active" data-tab="targets">Weekly Targets</button>
+          <button class="tab-btn" data-tab="categories">Categories</button>
+          <button class="tab-btn" data-tab="ai">AI Planning</button>
+          <button class="tab-btn" data-tab="other">Other</button>
+        </div>
+
+        <!-- Targets Tab -->
+        <div class="tab-content active" id="tab-targets">
+          <div class="targets-list" id="settings-targets-list"></div>
+          
+          <div class="add-target-form">
+            <h4>Add New Target</h4>
+            <div class="form-row">
+              <select id="new-target-category" class="input">
+                <!-- Populated from API categories -->
+              </select>
+              <input type="text" id="new-target-category-custom" class="input" placeholder="Custom category name" style="display:none; width:140px" title="When 'Custom' is selected, enter your own category name" />
+              <select id="new-target-type" class="input">
+                <option value="hours_per_day">hours/day</option>
+                <option value="hours_per_week">hours/week</option>
+                <option value="min_hours">minimum hours</option>
+                <option value="max_hours">maximum hours</option>
+              </select>
+              <input id="new-target-value" class="input" type="number" step="0.5" placeholder="Hours" style="width:80px" />
+              <button class="btn" id="btn-add-target">Add</button>
+            </div>
+            <div class="form-row">
+              <label class="field-label" style="margin:0">Time period (optional):</label>
+              <input id="new-target-start" class="input" type="date" style="width:140px" />
+              <span>to</span>
+              <input id="new-target-end" class="input" type="date" style="width:140px" />
+            </div>
+          </div>
+          
+          <div class="preset-targets">
+            <h4>Quick Presets</h4>
+            <div class="preset-grid">
+              <button class="preset-btn" data-preset="sleep">🌙 Sleep 8h/day</button>
+              <button class="preset-btn" data-preset="work">💼 Work 8h/day max</button>
+              <button class="preset-btn" data-preset="exercise">💪 Exercise 30min/day</button>
+              <button class="preset-btn" data-preset="learning">📚 Learn 2h/day</button>
+              <button class="preset-btn" data-preset="quality">💕 Quality time 1h/day</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Tab -->
+        <div class="tab-content" id="tab-categories">
+          <p class="muted">Manage categories for time entries, targets, and quick log. Set a color for each; it will be used in the calendar and weekly targets.</p>
+          <div class="categories-list" id="settings-categories-list"></div>
+          <div class="add-category-form" style="margin-top:16px">
+            <h4>Add category</h4>
+            <div class="form-row" style="flex-wrap:wrap; gap:8px">
+              <input type="text" id="new-category-name" class="input" placeholder="Category name" style="width:160px" />
+              <input type="color" id="new-category-color" value="#7986cb" title="Color" style="width:40px; height:32px; padding:2px; cursor:pointer" />
+              <span class="muted" style="font-size:12px" id="new-category-color-hex">#7986cb</span>
+              <button type="button" class="btn" id="btn-add-category">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Planning Tab -->
+        <div class="tab-content" id="tab-ai">
+          <div class="ai-section">
+            <h4>🤖 AI Planning Assistant</h4>
+            <p class="muted">Get personalized suggestions based on your time tracking data.</p>
+            
+            <label class="field-label">Your main goals right now:</label>
+            <textarea id="ai-goals" class="input" rows="3" placeholder="e.g., Find a new job by March&#10;Improve work-life balance&#10;Spend more time with partner"></textarea>
+            
+            <label class="field-label">Any constraints?</label>
+            <textarea id="ai-constraints" class="input" rows="2" placeholder="e.g., Work meetings 9-5 on weekdays&#10;Partner works evenings on Tuesdays"></textarea>
+            <div class="form-row" style="margin-top:10px; align-items:center">
+              <label class="field-label" style="margin:0">AI model:</label>
+              <select id="ai-planning-model" class="input" style="max-width:200px" title="Model for planning advice">
+                <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+                <option value="gpt-5">gpt-5</option>
+                <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+                <option value="supermind-agent-v1">supermind-agent-v1</option>
+                <option value="deepseek">deepseek</option>
+              </select>
+            </div>
+            <button class="btn" id="btn-get-ai-advice" style="margin-top:12px">Get AI Advice</button>
+          </div>
+          
+          <div class="ai-results" id="ai-results" style="display:none;">
+            <h4>📋 Personalized Recommendations</h4>
+            <div id="ai-advice-list"></div>
+            
+            <h4 style="margin-top:20px">📅 Suggested Weekly Template</h4>
+            <div id="ai-template"></div>
+          </div>
+        </div>
+
+        <!-- Other Settings Tab -->
+        <div class="tab-content" id="tab-other">
+          <div class="settings-section">
+            <h4>📅 Google Calendar</h4>
+            <p class="muted">Connect your Google account to show Google Calendar events in TimeSense. Turn on “Google Cal” in the header after connecting.</p>
+            <div class="form-row" style="align-items:center; gap:8px">
+              <span id="settings-google-status" class="muted">—</span>
+              <button type="button" class="btn secondary" id="settings-btn-google">Connect Google Calendar</button>
+            </div>
+          </div>
+          <div class="settings-section ai-builder-section">
+            <h4>🤖 AI features (AI Builders Space)</h4>
+            <p class="muted">Smart categorization (e.g. “called Mom” → Intimacy), detailed insights from your time log, and “Analyze day” use the AI Builders API. Set the token on the server to enable them.</p>
+            <div class="ai-builder-status">
+              <span class="ai-builder-label">Status:</span>
+              <span id="ai-builder-status-text" class="ai-builder-value">—</span>
+            </div>
+            <div class="form-row" style="margin-top:10px">
+              <label class="ai-builder-label">Insights model:</label>
+              <select id="settings-ai-insights-model" class="input" style="max-width:220px" title="Model used for Time Insights and weekly insights">
+                <option value="gemini-3-flash-preview">gemini-3-flash-preview (fast)</option>
+                <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+                <option value="gpt-5">gpt-5</option>
+                <option value="supermind-agent-v1">supermind-agent-v1</option>
+                <option value="deepseek">deepseek</option>
+                <option value="grok-4-fast">grok-4-fast</option>
+              </select>
+            </div>
+            <div class="ai-builder-help">
+              <strong>Where is <code>.env</code>?</strong> In your project root, same folder as <code>main.py</code>:<br>
+              <code id="env-file-path">AI Architect/.env</code><br>
+              <strong>How to enable:</strong> Add one line: <code>AI_BUILDER_TOKEN=your_token_here</code><br>
+              Then restart the backend. No browser change needed. See <code>DEPLOY.md</code> for details.
+            </div>
+          </div>
+          <div class="settings-section">
+            <h4>Push Notifications</h4>
+            <p class="muted">Get reminders to log your time</p>
+            <button class="btn secondary" id="btn-push">Enable Push</button>
+            <button class="btn-xs" id="btn-push-test">Test</button>
+          </div>
+          <div class="settings-section">
+            <h4>Install App</h4>
+            <p class="muted">Add to home screen for quick access</p>
+            <button class="btn secondary" id="btn-install" disabled>Install PWA</button>
+          </div>
+          <div class="settings-section">
+            <h4>Developer</h4>
+            <a class="link" href="/docs" target="_blank">OpenAPI Docs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights Modal -->
+  <div class="modal-overlay" id="insights-modal" style="display:none;">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <span class="modal-title">📊 Time Insights</span>
+        <button class="btn-icon-sm" id="insights-close">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="insights-header">
+          <div class="date-range-picker">
+            <input type="date" id="insights-start" class="input" />
+            <span>to</span>
+            <input type="date" id="insights-end" class="input" />
+            <button class="btn-sm" id="btn-apply-range">Apply</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <label class="muted" style="font-size:12px">AI model:</label>
+            <select id="insights-modal-model" class="input" style="max-width:180px; font-size:12px" title="Model for insights & suggestions">
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview (fast)</option>
+              <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+              <option value="gpt-5">gpt-5</option>
+              <option value="supermind-agent-v1">supermind-agent-v1</option>
+              <option value="deepseek">deepseek</option>
+              <option value="grok-4-fast">grok-4-fast</option>
+            </select>
+          </div>
+          <div style="margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap;">
+            <button class="btn-sm secondary range-btn" data-range="7">7d</button>
+            <button class="btn-sm secondary range-btn" data-range="14">14d</button>
+            <button class="btn-sm secondary range-btn" data-range="30">30d</button>
+            <button class="btn-sm secondary range-btn" data-range="90">3mo</button>
+            <button class="btn-sm secondary range-btn" data-range="180">6mo</button>
+            <button class="btn-sm secondary range-btn" data-range="365">1yr</button>
+          </div>
+        </div>
+
+        <div class="insights-stats" id="insights-stats">
+          <div class="insight-stat">
+            <div class="insight-stat-value" id="ins-total-hours">--</div>
+            <div class="insight-stat-label">Total Hours</div>
+          </div>
+          <div class="insight-stat">
+            <div class="insight-stat-value" id="ins-coverage">--</div>
+            <div class="insight-stat-label">Coverage</div>
+          </div>
+          <div class="insight-stat">
+            <div class="insight-stat-value" id="ins-productive">--</div>
+            <div class="insight-stat-label">Productive</div>
+          </div>
+          <div class="insight-stat">
+            <div class="insight-stat-value" id="ins-wasted">--</div>
+            <div class="insight-stat-label">Wasted</div>
+          </div>
+        </div>
+
+        <div class="insights-section">
+          <h3>Time Breakdown</h3>
+          <div class="breakdown-bars" id="insights-breakdown"></div>
+        </div>
+
+        <div class="insights-section">
+          <h3>💡 Insights & Suggestions</h3>
+          <div id="insights-tips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=20260209_5"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
+    /* Begin PBXProject section */
+    000000000000000000000001 /* Project object */ = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 1500;
+        ORGANIZATIONNAME = TimeSense;
+        TargetAttributes = {
+          000000000000000000000010 = {
+            CreatedOnToolsVersion = 15.0;
+          };
+        };
+      };
+      buildConfigurationList = 000000000000000000000005 /* Build configuration list for PBXProject "TimeSenseMenuBar" */;
+      compatibilityVersion = "Xcode 14.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      mainGroup = 000000000000000000000002;
+      productRefGroup = 000000000000000000000003 /* Products */;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = (
+        000000000000000000000010 /* TimeSenseMenuBar */,
+      );
+    };
+    /* End PBXProject section */
+
+    /* Begin PBXFileReference section */
+    000000000000000000000020 /* TimeSenseMenuBar.app */ = { isa = PBXFileReference; explicitFileType = wrapper.application; path = TimeSenseMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    000000000000000000000021 /* TimeSenseMenuBarApp.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSenseMenuBarApp.swift; sourceTree = "<group>"; };
+    000000000000000000000022 /* MenuBarController.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+    000000000000000000000023 /* WebView.swift */ = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+    /* End PBXFileReference section */
+
+    /* Begin PBXGroup section */
+    000000000000000000000002 = {
+      isa = PBXGroup;
+      children = (
+        000000000000000000000030 /* TimeSenseMenuBar */,
+        000000000000000000000003 /* Products */,
+      );
+      sourceTree = "<group>";
+    };
+    000000000000000000000003 /* Products */ = {
+      isa = PBXGroup;
+      children = (
+        000000000000000000000020 /* TimeSenseMenuBar.app */,
+      );
+      name = Products;
+      sourceTree = "<group>";
+    };
+    000000000000000000000030 /* TimeSenseMenuBar */ = {
+      isa = PBXGroup;
+      children = (
+        000000000000000000000021 /* TimeSenseMenuBarApp.swift */,
+        000000000000000000000022 /* MenuBarController.swift */,
+        000000000000000000000023 /* WebView.swift */,
+      );
+      path = TimeSenseMenuBar;
+      sourceTree = "<group>";
+    };
+    /* End PBXGroup section */
+
+    /* Begin PBXSourcesBuildPhase section */
+    000000000000000000000040 /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        000000000000000000000041 /* TimeSenseMenuBarApp.swift in Sources */,
+        000000000000000000000042 /* MenuBarController.swift in Sources */,
+        000000000000000000000043 /* WebView.swift in Sources */,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    /* End PBXSourcesBuildPhase section */
+
+    /* Begin PBXBuildFile section */
+    000000000000000000000041 /* TimeSenseMenuBarApp.swift in Sources */ = { isa = PBXBuildFile; fileRef = 000000000000000000000021 /* TimeSenseMenuBarApp.swift */; };
+    000000000000000000000042 /* MenuBarController.swift in Sources */ = { isa = PBXBuildFile; fileRef = 000000000000000000000022 /* MenuBarController.swift */; };
+    000000000000000000000043 /* WebView.swift in Sources */ = { isa = PBXBuildFile; fileRef = 000000000000000000000023 /* WebView.swift */; };
+    /* End PBXBuildFile section */
+
+    /* Begin PBXNativeTarget section */
+    000000000000000000000010 /* TimeSenseMenuBar */ = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 000000000000000000000011 /* Build configuration list for PBXNativeTarget "TimeSenseMenuBar" */;
+      buildPhases = (
+        000000000000000000000040 /* Sources */,
+      );
+      buildRules = (
+      );
+      dependencies = (
+      );
+      name = TimeSenseMenuBar;
+      productName = TimeSenseMenuBar;
+      productReference = 000000000000000000000020 /* TimeSenseMenuBar.app */;
+      productType = "com.apple.product-type.application";
+    };
+    /* End PBXNativeTarget section */
+
+    /* Begin XCBuildConfiguration section */
+    000000000000000000000012 /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGN_STYLE = Automatic;
+        DEVELOPMENT_TEAM = "";
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        PRODUCT_BUNDLE_IDENTIFIER = com.timesense.menubar;
+        PRODUCT_NAME = "$(TARGET_NAME)";
+        SWIFT_VERSION = 5.0;
+      };
+      name = Debug;
+    };
+    000000000000000000000013 /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        CODE_SIGN_STYLE = Automatic;
+        DEVELOPMENT_TEAM = "";
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        PRODUCT_BUNDLE_IDENTIFIER = com.timesense.menubar;
+        PRODUCT_NAME = "$(TARGET_NAME)";
+        SWIFT_VERSION = 5.0;
+      };
+      name = Release;
+    };
+
+    000000000000000000000006 /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        SWIFT_VERSION = 5.0;
+      };
+      name = Debug;
+    };
+    000000000000000000000007 /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        SWIFT_VERSION = 5.0;
+      };
+      name = Release;
+    };
+    /* End XCBuildConfiguration section */
+
+    /* Begin XCConfigurationList section */
+    000000000000000000000011 /* Build configuration list for PBXNativeTarget "TimeSenseMenuBar" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        000000000000000000000012 /* Debug */,
+        000000000000000000000013 /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+    000000000000000000000005 /* Build configuration list for PBXProject "TimeSenseMenuBar" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        000000000000000000000006 /* Debug */,
+        000000000000000000000007 /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+    /* End XCConfigurationList section */
+  };
+  rootObject = 000000000000000000000001 /* Project object */;
+}
+
+

@@ -1,0 +1,16 @@
+.env
+*.db
+__pycache__
+.venv
+venv
+.git
+.gitignore
+.cursor
+*.pyc
+.DS_Store
+_backup_*
+mac/
+ios/
+scripts/
+*.md
+DEBUG_*.json
