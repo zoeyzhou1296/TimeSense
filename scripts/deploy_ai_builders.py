@@ -38,7 +38,7 @@ def main():
         import urllib.error
         import urllib.request
         req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=headers, method="POST")
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=120) as resp:
             data = json.loads(resp.read().decode())
     except urllib.error.HTTPError as e:
         print(f"Deploy failed: HTTP {e.code}", file=sys.stderr)

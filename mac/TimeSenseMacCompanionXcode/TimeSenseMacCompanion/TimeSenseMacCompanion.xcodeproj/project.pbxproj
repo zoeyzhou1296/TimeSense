@@ -1,0 +1,620 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7804031C2F2BB03B000547C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7804031B2F2BB03B000547C1 /* Assets.xcassets */; };
+		7804031F2F2BB03B000547C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7804031E2F2BB03B000547C1 /* Preview Assets.xcassets */; };
+		7804032A2F2BB03B000547C1 /* TimeSenseMacCompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403292F2BB03B000547C1 /* TimeSenseMacCompanionTests.swift */; };
+		780403342F2BB03B000547C1 /* TimeSenseMacCompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403332F2BB03B000547C1 /* TimeSenseMacCompanionUITests.swift */; };
+		780403362F2BB03B000547C1 /* TimeSenseMacCompanionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403352F2BB03B000547C1 /* TimeSenseMacCompanionUITestsLaunchTests.swift */; };
+		7804034B2F2BB404000547C1 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403432F2BB403000547C1 /* SettingsStore.swift */; };
+		7804034C2F2BB404000547C1 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403442F2BB403000547C1 /* MenuBarController.swift */; };
+		7804034D2F2BB404000547C1 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403452F2BB403000547C1 /* SyncService.swift */; };
+		7804034E2F2BB404000547C1 /* SyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403462F2BB403000547C1 /* SyncView.swift */; };
+		7804034F2F2BB404000547C1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403472F2BB403000547C1 /* Models.swift */; };
+		780403502F2BB404000547C1 /* SyncViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403482F2BB404000547C1 /* SyncViewModel.swift */; };
+		780403512F2BB404000547C1 /* EventKitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780403492F2BB404000547C1 /* EventKitProvider.swift */; };
+		780403522F2BB404000547C1 /* TimeSenseMacCompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7804034A2F2BB404000547C1 /* TimeSenseMacCompanionApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		780403262F2BB03B000547C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7804030C2F2BB03A000547C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 780403132F2BB03A000547C1;
+			remoteInfo = TimeSenseMacCompanion;
+		};
+		780403302F2BB03B000547C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7804030C2F2BB03A000547C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 780403132F2BB03A000547C1;
+			remoteInfo = TimeSenseMacCompanion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		780403142F2BB03A000547C1 /* TimeSenseMacCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeSenseMacCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7804031B2F2BB03B000547C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7804031E2F2BB03B000547C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		780403202F2BB03B000547C1 /* TimeSenseMacCompanion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeSenseMacCompanion.entitlements; sourceTree = "<group>"; };
+		780403252F2BB03B000547C1 /* TimeSenseMacCompanionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeSenseMacCompanionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		780403292F2BB03B000547C1 /* TimeSenseMacCompanionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSenseMacCompanionTests.swift; sourceTree = "<group>"; };
+		7804032F2F2BB03B000547C1 /* TimeSenseMacCompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeSenseMacCompanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		780403332F2BB03B000547C1 /* TimeSenseMacCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSenseMacCompanionUITests.swift; sourceTree = "<group>"; };
+		780403352F2BB03B000547C1 /* TimeSenseMacCompanionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSenseMacCompanionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		780403432F2BB403000547C1 /* SettingsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		780403442F2BB403000547C1 /* MenuBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		780403452F2BB403000547C1 /* SyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
+		780403462F2BB403000547C1 /* SyncView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncView.swift; sourceTree = "<group>"; };
+		780403472F2BB403000547C1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		780403482F2BB404000547C1 /* SyncViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncViewModel.swift; sourceTree = "<group>"; };
+		780403492F2BB404000547C1 /* EventKitProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventKitProvider.swift; sourceTree = "<group>"; };
+		7804034A2F2BB404000547C1 /* TimeSenseMacCompanionApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSenseMacCompanionApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		780403112F2BB03A000547C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		780403222F2BB03B000547C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7804032C2F2BB03B000547C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7804030B2F2BB03A000547C1 = {
+			isa = PBXGroup;
+			children = (
+				780403162F2BB03A000547C1 /* TimeSenseMacCompanion */,
+				780403282F2BB03B000547C1 /* TimeSenseMacCompanionTests */,
+				780403322F2BB03B000547C1 /* TimeSenseMacCompanionUITests */,
+				780403152F2BB03A000547C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		780403152F2BB03A000547C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				780403142F2BB03A000547C1 /* TimeSenseMacCompanion.app */,
+				780403252F2BB03B000547C1 /* TimeSenseMacCompanionTests.xctest */,
+				7804032F2F2BB03B000547C1 /* TimeSenseMacCompanionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		780403162F2BB03A000547C1 /* TimeSenseMacCompanion */ = {
+			isa = PBXGroup;
+			children = (
+				780403422F2BB3C0000547C1 /* New Group */,
+				7804031B2F2BB03B000547C1 /* Assets.xcassets */,
+				780403202F2BB03B000547C1 /* TimeSenseMacCompanion.entitlements */,
+				7804031D2F2BB03B000547C1 /* Preview Content */,
+			);
+			path = TimeSenseMacCompanion;
+			sourceTree = "<group>";
+		};
+		7804031D2F2BB03B000547C1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7804031E2F2BB03B000547C1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		780403282F2BB03B000547C1 /* TimeSenseMacCompanionTests */ = {
+			isa = PBXGroup;
+			children = (
+				780403292F2BB03B000547C1 /* TimeSenseMacCompanionTests.swift */,
+			);
+			path = TimeSenseMacCompanionTests;
+			sourceTree = "<group>";
+		};
+		780403322F2BB03B000547C1 /* TimeSenseMacCompanionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				780403332F2BB03B000547C1 /* TimeSenseMacCompanionUITests.swift */,
+				780403352F2BB03B000547C1 /* TimeSenseMacCompanionUITestsLaunchTests.swift */,
+			);
+			path = TimeSenseMacCompanionUITests;
+			sourceTree = "<group>";
+		};
+		780403422F2BB3C0000547C1 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				780403492F2BB404000547C1 /* EventKitProvider.swift */,
+				780403442F2BB403000547C1 /* MenuBarController.swift */,
+				780403472F2BB403000547C1 /* Models.swift */,
+				780403432F2BB403000547C1 /* SettingsStore.swift */,
+				780403452F2BB403000547C1 /* SyncService.swift */,
+				780403462F2BB403000547C1 /* SyncView.swift */,
+				780403482F2BB404000547C1 /* SyncViewModel.swift */,
+				7804034A2F2BB404000547C1 /* TimeSenseMacCompanionApp.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		780403132F2BB03A000547C1 /* TimeSenseMacCompanion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 780403392F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanion" */;
+			buildPhases = (
+				780403102F2BB03A000547C1 /* Sources */,
+				780403112F2BB03A000547C1 /* Frameworks */,
+				780403122F2BB03A000547C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeSenseMacCompanion;
+			productName = TimeSenseMacCompanion;
+			productReference = 780403142F2BB03A000547C1 /* TimeSenseMacCompanion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		780403242F2BB03B000547C1 /* TimeSenseMacCompanionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7804033C2F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanionTests" */;
+			buildPhases = (
+				780403212F2BB03B000547C1 /* Sources */,
+				780403222F2BB03B000547C1 /* Frameworks */,
+				780403232F2BB03B000547C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				780403272F2BB03B000547C1 /* PBXTargetDependency */,
+			);
+			name = TimeSenseMacCompanionTests;
+			productName = TimeSenseMacCompanionTests;
+			productReference = 780403252F2BB03B000547C1 /* TimeSenseMacCompanionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7804032E2F2BB03B000547C1 /* TimeSenseMacCompanionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7804033F2F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanionUITests" */;
+			buildPhases = (
+				7804032B2F2BB03B000547C1 /* Sources */,
+				7804032C2F2BB03B000547C1 /* Frameworks */,
+				7804032D2F2BB03B000547C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				780403312F2BB03B000547C1 /* PBXTargetDependency */,
+			);
+			name = TimeSenseMacCompanionUITests;
+			productName = TimeSenseMacCompanionUITests;
+			productReference = 7804032F2F2BB03B000547C1 /* TimeSenseMacCompanionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7804030C2F2BB03A000547C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					780403132F2BB03A000547C1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					780403242F2BB03B000547C1 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 780403132F2BB03A000547C1;
+					};
+					7804032E2F2BB03B000547C1 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 780403132F2BB03A000547C1;
+					};
+				};
+			};
+			buildConfigurationList = 7804030F2F2BB03A000547C1 /* Build configuration list for PBXProject "TimeSenseMacCompanion" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7804030B2F2BB03A000547C1;
+			productRefGroup = 780403152F2BB03A000547C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				780403132F2BB03A000547C1 /* TimeSenseMacCompanion */,
+				780403242F2BB03B000547C1 /* TimeSenseMacCompanionTests */,
+				7804032E2F2BB03B000547C1 /* TimeSenseMacCompanionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		780403122F2BB03A000547C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7804031F2F2BB03B000547C1 /* Preview Assets.xcassets in Resources */,
+				7804031C2F2BB03B000547C1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		780403232F2BB03B000547C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7804032D2F2BB03B000547C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		780403102F2BB03A000547C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7804034E2F2BB404000547C1 /* SyncView.swift in Sources */,
+				780403522F2BB404000547C1 /* TimeSenseMacCompanionApp.swift in Sources */,
+				7804034B2F2BB404000547C1 /* SettingsStore.swift in Sources */,
+				7804034C2F2BB404000547C1 /* MenuBarController.swift in Sources */,
+				780403502F2BB404000547C1 /* SyncViewModel.swift in Sources */,
+				7804034F2F2BB404000547C1 /* Models.swift in Sources */,
+				7804034D2F2BB404000547C1 /* SyncService.swift in Sources */,
+				780403512F2BB404000547C1 /* EventKitProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		780403212F2BB03B000547C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7804032A2F2BB03B000547C1 /* TimeSenseMacCompanionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7804032B2F2BB03B000547C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				780403342F2BB03B000547C1 /* TimeSenseMacCompanionUITests.swift in Sources */,
+				780403362F2BB03B000547C1 /* TimeSenseMacCompanionUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		780403272F2BB03B000547C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 780403132F2BB03A000547C1 /* TimeSenseMacCompanion */;
+			targetProxy = 780403262F2BB03B000547C1 /* PBXContainerItemProxy */;
+		};
+		780403312F2BB03B000547C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 780403132F2BB03A000547C1 /* TimeSenseMacCompanion */;
+			targetProxy = 780403302F2BB03B000547C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		780403372F2BB03B000547C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		780403382F2BB03B000547C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		7804033A2F2BB03B000547C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimeSenseMacCompanion/TimeSenseMacCompanion.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TimeSenseMacCompanion/Preview Content\"";
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "TimeSense reads calendar titles to sync planned events.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7804033B2F2BB03B000547C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TimeSenseMacCompanion/TimeSenseMacCompanion.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TimeSenseMacCompanion/Preview Content\"";
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "TimeSense reads calendar titles to sync planned events.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		7804033D2F2BB03B000547C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeSenseMacCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TimeSenseMacCompanion";
+			};
+			name = Debug;
+		};
+		7804033E2F2BB03B000547C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeSenseMacCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TimeSenseMacCompanion";
+			};
+			name = Release;
+		};
+		780403402F2BB03B000547C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TimeSenseMacCompanion;
+			};
+			name = Debug;
+		};
+		780403412F2BB03B000547C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QN9M3H7CX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timesense.TimeSenseMacCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = TimeSenseMacCompanion;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7804030F2F2BB03A000547C1 /* Build configuration list for PBXProject "TimeSenseMacCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				780403372F2BB03B000547C1 /* Debug */,
+				780403382F2BB03B000547C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		780403392F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7804033A2F2BB03B000547C1 /* Debug */,
+				7804033B2F2BB03B000547C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7804033C2F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7804033D2F2BB03B000547C1 /* Debug */,
+				7804033E2F2BB03B000547C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7804033F2F2BB03B000547C1 /* Build configuration list for PBXNativeTarget "TimeSenseMacCompanionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				780403402F2BB03B000547C1 /* Debug */,
+				780403412F2BB03B000547C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7804030C2F2BB03A000547C1 /* Project object */;
+}
