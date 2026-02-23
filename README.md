@@ -1,49 +1,72 @@
 # TimeSense (MVP)
 
-Local MVP for low-friction time logging, calendar sync, gaps, and reminders.
+**TimeSense** is a local-first time logging app: quick one-tap logs, calendar sync (Google, Apple, Outlook, ICS), daily review, and optional reminders. It keeps a SQLite database on your machine and can optionally write time blocks to a dedicated **TimeSense Logs** Google Calendar.
+
+This README walks you through getting the app running from a fresh clone, then connecting Google Calendar and using the Mac/iPhone companions.
 
 ---
 
-## Run locally (any user)
+## Getting started (from clone)
 
-From the project root (the folder that contains `main.py` and `requirements.txt`):
+Follow these steps from scratch. You need **Python 3.11+** and **git**.
+
+### 1. Clone the repository
 
 ```bash
-# 1. Create and activate a virtual environment (recommended)
+git clone https://github.com/zoeyzhou1296/TimeSense.git
+cd TimeSense
+```
+
+The **project root** is this `TimeSense` folder (it contains `main.py`, `requirements.txt`, and `static/`). All commands below assume you are in the project root.
+
+### 2. Create a virtual environment and install dependencies
+
+Using a venv keeps TimeSense’s dependencies separate from your system Python:
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-
-# 2. Install dependencies
 pip install -r requirements.txt
+```
 
-# 3. Copy env template and edit (see Setup below)
-# cp .env.example .env   # if you have one; otherwise create .env with required vars
+Leave the venv activated for the next steps.
 
-# 4. Run the server
+### 3. Create a `.env` file
+
+TimeSense reads environment variables from a file named **`.env`** in the project root. Create it there (same folder as `main.py`).
+
+**Minimum to run the app (without Google):**
+
+```bash
+# Optional but recommended for sessions; required if you connect Google later
+SESSION_SECRET=your-random-secret-at-least-32-chars
+```
+
+You can use any long random string for `SESSION_SECRET` (e.g. `openssl rand -hex 32`).
+
+To **connect Google Calendar**, you’ll also add `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` later (see [Connect Google Calendar](#connect-google-calendar)).
+
+### 4. Run the server
+
+```bash
 uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Then open: **http://127.0.0.1:8000/**
+Then open in your browser: **http://127.0.0.1:8000/**
 
-To allow access from other devices on your network (e.g. iPhone companion), use:
+To allow access from other devices on your network (e.g. iPhone or Mac companion), run instead:
 
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-and visit `http://<your-machine-ip>:8000` from those devices.
+and use `http://<your-computer-ip>:8000` from those devices.
 
 ---
 
-## Setup
+## Setup (reference)
 
-### 1. Clone and install
-
-- **Python:** 3.11+ recommended.
-- Clone the repo and `cd` into the project root.
-- Create a virtual env and install dependencies (see “Run locally” above).
-
-### 2. Environment variables (`.env`)
+### Environment variables (`.env`)
 
 Create a `.env` file in the **project root** (same folder as `main.py`). The app loads it at startup.
 
@@ -183,19 +206,6 @@ A native macOS menu-bar app reads **Apple Calendar** (EventKit) and syncs planne
 - **Outlook (Microsoft Graph):** Set `MS_CLIENT_ID`, `MS_CLIENT_SECRET`, `MS_REDIRECT_URI` (and optionally `MS_TENANT`). Add the redirect URI in Azure App registration. In the app, connect Microsoft in Settings.
 - **Web Push (PWA):** Set `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, and optionally `VAPID_SUBJECT`. Without these, push endpoints return an error but the rest of the app works.
 - **AI Builders (insights, categorization):** Set `AI_BUILDER_TOKEN` in `.env`. See DEPLOY.md for details.
-
----
-
-## Deploy to AI Builders Space
-
-To deploy the web app to **https://timesense.ai-builders.space/** (or your service URL):
-
-1. Ensure the repo has a **Dockerfile** in the root and that `main.py` and `static/` are included (see repo).
-2. Set `AI_BUILDER_TOKEN` in your `.env` (from AI Builders Space).
-3. Run:  
-   `python scripts/deploy_ai_builders.py`  
-   (script POSTs to the deployment API with repo URL, service name `timesense`, branch `main`).
-4. Wait 5–10 minutes and open your service URL.
 
 ---
 
